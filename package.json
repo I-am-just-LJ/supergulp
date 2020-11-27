@@ -15,7 +15,11 @@
     "url": "https://github.com/I-am-just-LJ/supergulp/issues"
   },
   "homepage": "https://github.com/I-am-just-LJ/supergulp#readme",
-  "dependencies": {},
+  "dependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/register": "^7.12.1"
+  },
   "devDependencies": {
     "gulp": "^4.0.2"
   }
