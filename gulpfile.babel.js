@@ -27,26 +27,27 @@ const routes = {
 const pug = () =>
   gulp.src(routes.pug.src).pipe(gpug()).pipe(gulp.dest(routes.pug.dest));
 
-const clean = () => del(["build"]);
+const clean = () => {
+  del(["build"]);
+};
 
-const webserver = () =>
+const webserver = () => {
   gulp.src("build").pipe(ws({ livereload: true, open: true }));
-
-const watch = () => {
-  gulp.watch(routes.pug.watch, pug);
-  gulp.watch(routes.img.src, img);
-  gulp.watch(routes.scss.watch, style);
 };
-
-const img = () => {
-  gulp.src(routes.img.src).pipe(image()).pipe(gulp.dest(route.img.dest));
-};
-
-const style = () => {
+const styles = () => {
   gulp
     .src(routes.scss.src)
     .pipe(sass().on("error", sass.logError))
     .pipe(gulp.dest(routes.scss.dest));
+};
+const watch = () => {
+  gulp.watch(routes.pug.watch, pug);
+  gulp.watch(routes.img.src, img);
+  gulp.watch(routes.scss.watch, styles);
+};
+
+const img = () => {
+  gulp.src(routes.img.src).pipe(image()).pipe(gulp.dest(route.img.dest));
 };
 
 const prepare = gulp.dest([clean, img]);
